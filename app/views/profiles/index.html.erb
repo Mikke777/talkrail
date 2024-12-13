@@ -1,0 +1,18 @@
+<h1>Profiles</h1>
+
+<%= form_with url: profiles_path, method: :get, local: true do %>
+  <div class="form-group">
+    <%= label_tag :query, "Search Profiles" %>
+    <%= text_field_tag :query, params[:query], class: "form-control" %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+<% if @profiles.empty? %>
+  <p>No profiles found or Please use the search bar to start your research.</p>
+<% else %>
+  <ul>
+    <% @profiles.each do |profile| %>
+      <li><%= link_to profile.name, profile_path(profile) %></li>
+    <% end %>
+  </ul>
+<% end %>
