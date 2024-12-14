@@ -1,6 +1,0 @@
-<h1>Start a New Chat with <%= @profile.name %></h1>
-
-<%= form_with model: [@profile, @chat], local: true do |f| %>
-  <%= f.hidden_field :profile_id, value: @profile.id %>
-  <%= f.submit "Start Chat", class: "btn btn-primary" %>
-<% end %>

@@ -1,3 +1,7 @@
 <h1><%= @profile.name %></h1>
 
-<%= button_to 'Start Chat', profile_chats_path(@profile), method: :post, class: 'btn btn-primary' %>
+<% if current_user.profile == @profile %>
+  <%= button_to 'Start Chat with yourself', profile_chats_path(@profile), method: :post, class: 'btn btn-primary' %>
+<% else %>
+  <%= button_to "Start Chat with #{@profile.name}", profile_chats_path(@profile), method: :post, class: 'btn btn-primary' %>
+<% end %>
