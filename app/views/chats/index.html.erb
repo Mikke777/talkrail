@@ -4,7 +4,9 @@
 <% else %>
   <ul>
     <% @chats.each do |chat| %>
-      <li><%= link_to chat.profile.name, chat_path(chat) %></li>
+      <li>
+        <%= link_to chat.profile.name, chat_path(chat) %>
+      </li>
     <% end %>
   </ul>
 <% end %>
