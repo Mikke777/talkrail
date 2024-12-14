@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "chats#index"
 
   resources :profiles, only: [:index, :show, :new, :create] do
-    resources :chats, only: [:index, :new, :create]
+    resources :chats, only: [:index, :new, :create] do
+      resources :messages, only: [:create]
+    end
   end
 
   resources :chats, only: [:show] do
