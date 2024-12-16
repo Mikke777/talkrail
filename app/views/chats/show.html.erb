@@ -1,21 +1,10 @@
-<div class="container chat">
-  <h1>Your chat with <%= @chat.profile.name %></h1>
-
-  <div id="messages" class="messages">
-    <h2>Messages</h2>
-    <% @chat.messages.each do |message| %>
-      <div id="message-<%= message.id %>">
-        <small>
-          <% if message.created_at.present? %>
-            <strong><%= message.user.first_name %></strong>
-            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-          <% else %>
-            <i></i>
-          <% end %>
-        </small>
-        <p><%= message.content %></p>
-      </div>
-    <% end %>
-    <%= render 'messages/form', chat: @chat %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%= render 'chats/chats', chats: @chats %>
+    </div>
+    <div class="col-9">
+      <%= render 'chats/details', chat: @chat %>
+    </div>
   </div>
 </div>
