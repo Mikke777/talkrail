@@ -3,13 +3,21 @@ class MessagesController < ApplicationController
   before_action :set_chat
 
   def create
-    @message = @chat.messages.build(message_params)
+    @chat = Chat.find(params[:chat_id])
+    @message = Message.new(message_params)
+    @message.chat = @chat
     @message.user = current_user
-
     if @message.save
-      redirect_to chat_path(@chat), notice: 'Message was successfully sent.'
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
+            target: "messages",
+            locals: { message: @message, user: current_user })
+        end
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      redirect_to chat_path(@chat), alert: 'Failed to send message.'
+      render "chats/show", status: :unprocessable_entity
     end
   end
 
