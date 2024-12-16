@@ -1,14 +1,12 @@
-<h1>Your Chats</h1>
+<p>Chats:</p>
 <% if @chats.empty? %>
   <p>You don't have any chats yet.</p>
 <% else %>
-  <ul class="list-unstyled">
+  <div>
     <% @chats.each do |chat| %>
-      <li>
-        <%= link_to "#{chat.profile.name}-#{chat.user.first_name}", chat_path(chat) %>
-      </li>
+      <%= link_to "#{chat.profile.name}-#{chat.user.first_name}", chat_path(chat), class: "link-hover border my-1 border-secondary list-group-item list-group-item-action text-decoration-none" %>
     <% end %>
-  </ul>
+  </div>
 <% end %>
 
 <% if current_user.profile.nil? %>
