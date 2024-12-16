@@ -1,17 +1,10 @@
-<h1>Your Chats</h1>
-<% if @chats.empty? %>
-  <p>You don't have any chats yet.</p>
-<% else %>
-  <ul>
-    <% @chats.each do |chat| %>
-      <li>
-        <%= link_to "Chat with the profile: #{chat.profile.name} from the user: #{chat.user.first_name}", chat_path(chat) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if current_user.profile.nil? %>
-  <%= link_to 'Create New Profile', new_profile_path, class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Search for Profiles', profiles_path, class: 'btn btn-primary' %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    <%= render 'chats/chats', chats: @chats %>
+    </div>
+    <div class="col-9">
+      <div class="text-secondary">Select a contact to view details</div>
+    </div>
+  </div>
+</div>

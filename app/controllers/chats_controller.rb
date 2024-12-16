@@ -11,6 +11,7 @@ class ChatsController < ApplicationController
   end
 
   def show
+    @chats = Chat.involving(current_user)
     @chat = Chat.find(params[:id])
     @messages = @chat.messages
     @message = @chat.messages.build
