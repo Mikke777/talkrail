@@ -1,19 +1,21 @@
-<h1>Your chat with <%= @chat.profile.name %></h1>
+<div class="chat">
+  <h1>Your chat with <%= @chat.profile.name %></h1>
 <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
-<div id="messages" class="messages">
-  <h2>Messages</h2>
-  <% @chat.messages.each do |message| %>
-    <%= render 'messages/message', message: message %>
+  <div id="messages" class="messages">
+    <h2>Messages</h2>
+    <% @chat.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+  <%= simple_form_for [@chat, @message],
+    html: { class: "d-flex",
+    data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f|
+  %>
+    <%= f.input :content,
+      label: false,
+      placeholder: "Type a message",
+      class: 'form-control',
+      wrapper_html: { class: "flex-grow-1" } %>
+    <%= f.submit 'Send', class: 'btn btn-primary mb-3' %>
   <% end %>
 </div>
-<%= simple_form_for [@chat, @message],
-  html: { class: "d-flex",
-  data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } } do |f|
-%>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Type your message here",
-    class: 'form-control',
-    wrapper_html: { class: "flex-grow-1" } %>
-  <%= f.submit 'Send', class: 'btn btn-primary mb-3' %>
-<% end %>
