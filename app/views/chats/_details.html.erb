@@ -2,9 +2,8 @@
   <h1>Your chat with <%= @chat.profile.name %></h1>
 <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
   <div id="messages" class="messages">
-    <h2>Messages</h2>
     <% @chat.messages.each do |message| %>
-      <%= render 'messages/message', message: message %>
+      <%= render 'messages/message', message: message, user: current_user %>
     <% end %>
   </div>
   <%= simple_form_for [@chat, @message],

@@ -1,15 +1,18 @@
-<p>Chats:</p>
-<% if @chats.empty? %>
-  <p>You don't have any chats yet.</p>
-<% else %>
-  <div>
-    <% @chats.each do |chat| %>
-      <%= link_to "#{chat.profile.name}-#{chat.user.first_name}", chat_path(chat), class: "link-hover border my-1 border-secondary list-group-item list-group-item-action text-decoration-none" %>
+<div class="list-chat">
+  <p>Chats:</p>
+  <% if @chats.empty? %>
+    <p>You don't have any chats yet.</p>
+  <% else %>
+    <div class="chat-units">
+      <% @chats.each do |chat| %>
+        <%= link_to "#{chat.profile.name}-#{chat.user.first_name}", chat_path(chat), class: "border my-1 border-secondary list-group-item list-group-item-action text-decoration-none" %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="search-buttons">
+    <% if current_user.profile.nil? %>
+    <%= link_to 'Create New Profile', new_profile_path, class: 'btn btn-primary' %>
     <% end %>
+    <%= link_to 'Search for Profiles', profiles_path, class: 'btn btn-primary' %>
   </div>
-<% end %>
-
-<% if current_user.profile.nil? %>
-  <%= link_to 'Create New Profile', new_profile_path, class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Search for Profiles', profiles_path, class: 'btn btn-primary' %>
+</div>
