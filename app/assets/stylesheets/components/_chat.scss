@@ -9,9 +9,9 @@
 
   h1 {
     border-bottom: 1px solid gray;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     padding: 1rem;
-    color: white  ;
+    color: white;
   }
 
   .messages {
@@ -23,7 +23,6 @@
   }
 
   .message-info {
-    opacity: 0.5;
     text-align: center;
     width: 100%;
   }
