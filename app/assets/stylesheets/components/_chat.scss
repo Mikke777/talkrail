@@ -4,7 +4,6 @@
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   flex-grow: 1;
   width: 82vw;
 
@@ -13,15 +12,6 @@
     margin-bottom: 0;
     padding: 1rem;
     color: white  ;
-  }
-
-  #new_message {
-    border-top: 1px solid gray;
-    padding: 1rem;
-
-    .form-group {
-      margin-bottom: 0;
-    }
   }
 
   .messages {
@@ -47,14 +37,20 @@
     word-wrap: break-word;
   }
 
-  .message.sent .message-content {
+  .message.sent {
     align-self: flex-start;
     background: blue;
     color: lightgray;
+    border-radius: 15px;
+    margin-bottom: 5rem;
+    padding: 1rem;
   }
 
-  .message.received .message-content {
+  .message.received {
     align-self: flex-end;
     background: gray;
+    border-radius: 15px;
+    margin-bottom: 5rem;
+    padding: 1rem;
   }
 }

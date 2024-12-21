@@ -1,11 +1,13 @@
 <div
-    id="message-<%= message.id %>"
-    class="message <%= message.user === user ? 'sent' : 'received' %>">
-  <small class="message-info">
-    <% if message.created_at.present? %>
-      <strong><%= message.user.first_name %></strong>
-      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-    <% end %>
-  </small>
+  id="message-<%= message.id %>"
+  class="message <%= message.user === user ? 'sent' : 'received' %>"
+  data-controller="message"
+  data-message-user-id-value="<%= message.user&.id %>">
+    <small class="message-info">
+      <% if message.created_at.present? %>
+        <strong><%= message.user.first_name %></strong>
+        <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+      <% end %>
+    </small>
   <p class="message-content"><%= message.content %></p>
 </div>
